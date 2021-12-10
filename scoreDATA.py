@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from generateLD import generateLD
 
 def score(data, m):
     mx = max(data)
@@ -12,7 +13,7 @@ def score(data, m):
 
     return score
     
-df1 = pd.read_csv('mutantcount1', header=None)
-m = np.median(df1)
-data = df1.to_numpy().flatten()
-print(score(data, m))
+# df1 = pd.read_csv('mutantcount1', header=None)
+# m = np.median(df1)
+# data = df1.to_numpy().flatten()
+# print(score(data, m))

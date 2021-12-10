@@ -17,7 +17,7 @@ def MLE_step_m(data, m, dif, score_data, first=False, maximize=False):
       for i in range(len(ms)):
         if ms[i] < 0:
           ms[i] = 0
-    scores = [score_data(data, ms[0])), score_data(data, ms[1]), score_data(data, ms[2])]
+    scores = [score_data(data, ms[0]), score_data(data, ms[1]), score_data(data, ms[2])]
     if maximize:
       for i in range(len(scores)):
         if ms[i] < 0:
@@ -59,7 +59,7 @@ def find_mut_rate_only(data, score_data, dif=[1, 0.1, 0.01, 0.001], maximize=Fal
     m = 10
   first = True
   for i in dif:
-    m = MLE_step_m(data, m, i, first, maximize)
+    m = MLE_step_m(data, m, i, score_data, first, maximize)
     first = False
   return m
 

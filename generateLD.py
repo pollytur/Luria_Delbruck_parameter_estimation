@@ -10,12 +10,12 @@ def generateLD(m, max):
         ldDist.append(temp)
     return ldDist
 
-df1 = pd.read_csv('mutantcount1', header=None)
-max = df1[0].max()
-distrib = generateLD(np.median(df1), max)
+# df1 = pd.read_csv('mutantcount1', header=None)
+# max = df1[0].max()
+# distrib = generateLD(np.median(df1), max)
 
-plt.plot(distrib)
-plt.xlabel('number of mutant cells')
-plt.ylabel('probability of event')
-plt.title("graph of the Luria Delbruck distribution for the file mutantcount1")
-plt.show()
+# plt.plot(distrib)
+# plt.xlabel('number of mutant cells')
+# plt.ylabel('probability of event')
+# plt.title("graph of the Luria Delbruck distribution for the file mutantcount1")
+# plt.show()
