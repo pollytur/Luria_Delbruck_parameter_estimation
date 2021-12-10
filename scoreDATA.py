@@ -1,3 +1,6 @@
+import numpy as np
+import pandas as pd
+
 def score(data, m):
     mx = max(data)
     tabdata = [0 for _ in range(mx)]
