@@ -9,7 +9,8 @@ def generateLD(m, max):
         temp = m/len(x)*sum(ldDist/(len(x) - x + 1))
         ldDist.append(temp)
     return ldDist
-  
+
+df1 = pd.read_csv('mutantcount1', header=None)
 max = df1[0].max()
 distrib = generateLD(np.median(df1), max)
 
