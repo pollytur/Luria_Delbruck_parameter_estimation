@@ -9,14 +9,18 @@ def score(data, m, single=True, d=None):
     :param d:
     :return:
     '''
-    mx = max(data)
+    mx = max(data) + 1
     tabdata = [0 for _ in range(mx)]
-    for i in range(mx):
-        tabdata[i] = len(np.where(np.array(data) == i))
+    for element in data:
+        tabdata[element] += 1
     if single:
         dist = generateLD(m, mx)
     else:
         dist = generate_two_params(m, d, mx)
     score = sum(-np.log(np.array(dist) ** tabdata))
-
     return score
+
+# data = [0, 65, 9, 2, 16, 4, 3]
+# m= 6
+
+# print(score(data, m))

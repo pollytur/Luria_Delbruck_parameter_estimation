@@ -27,3 +27,5 @@ def generate_two_params(m, d, max):
         mult = ld[: i + 1] @ np.fliplr(pois[:i + 1])
         codist.append(mult)
     return codist
+
+
