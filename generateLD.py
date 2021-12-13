@@ -1,5 +1,6 @@
 import numpy as np
 from math import factorial
+from decimal import *
 
 
 def generateLD(m, max):
@@ -12,9 +13,17 @@ def generateLD(m, max):
 
 
 def generate_poisson(lamb, max):
-    dist = [0] * (max + 1)
-    for i in range(max + 1):
-        dist[i] = (lamb ** i) * np.exp((-1) * lamb) / factorial(i)
+    lamb = Decimal(lamb)
+    dist = [0] * (max)
+    for i in range(max):
+        with localcontext() as ctx:
+            ctx.prec = 32
+            if lamb != 0:
+                inter = ctx.exp((-1) * lamb) * ctx.power(lamb, i)
+            else:
+                inter = 0
+                # inter = Decimal('inf')
+            dist[i] = float(inter / Decimal(factorial(i)))
     return dist
 
 
@@ -23,9 +32,8 @@ def generate_two_params(m, d, max):
     pois = np.asarray(generate_poisson(m * d, max))
     pois[np.isnan(pois)] = 0
     codist = []
-    for i in range(max + 1):
+    pois = pois.reshape(-1, 1)
+    for i in range(max):
         mult = ld[: i + 1] @ np.fliplr(pois[:i + 1])
-        codist.append(mult)
+        codist.append(mult[0])
     return codist
-
-

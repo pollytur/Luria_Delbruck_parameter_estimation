@@ -20,6 +20,7 @@ def MLE_step_m_one_param(data, m, dif, score_data, first=False):
         m = ms[scores.index(min(scores))]
     return m
 
+
 def MLE_step_m_two_param(data, m, dif, score_data):
     '''
     m is initial mutation rate estimation - float
@@ -65,15 +66,12 @@ def find_mut_rate_one_param(data, score_data, dif=[1, 0.1, 0.01, 0.001], Nc=1000
     dif is precisions of m - list
     maximize indicates if we need to modify scores - Boolean
     '''
-    # TODO - check why m is no more than 10 and why + 0.1 ???
-    m = median(data) + 0.1
-    if m > 10:
-        m = 10
+    m = median(data)
     first = True
     for i in dif:
         m = MLE_step_m_one_param(data, m, i, score_data, first)
         first = False
-    return m/Nc
+    return m / Nc
 
 
 def find_mut_and_death_rate(data, score_data,
@@ -85,11 +83,9 @@ def find_mut_and_death_rate(data, score_data,
     dif_m is precisions of m - list
     dif_d is precisions of d - list
     '''
-    m = median(data) + 0.1
-    if m > 10:
-        m = 10
+    m = median(data)
     for i in dif_m:
         m = MLE_step_m_two_param(data, m, i, score_data)
     for i in dif_d:
         d = MLE_step_d(data, d, i, m, score_data)
-    return (m/Nc, d)
+    return (m / Nc, d)
