@@ -44,7 +44,7 @@ def MLE_step_d(data, d, dif, m, score_data):
     return d
 
 
-def find_mut_rate_only(data, score_data, dif=[1, 0.1, 0.01, 0.001], maximize=False):
+def find_mut_rate_only(data, score_data, dif=[1, 0.1, 0.01, 0.001], maximize=False, Nc=1000000):
     '''
     data is inpt data - list
     score_data - function to estimate the m
@@ -59,7 +59,7 @@ def find_mut_rate_only(data, score_data, dif=[1, 0.1, 0.01, 0.001], maximize=Fal
     for i in dif:
         m = MLE_step_m(data, m, i, score_data, first, maximize)
         first = False
-    return m
+    return m/Nc
 
 
 def find_mut_and_death_rate(data, score_data,
