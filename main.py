@@ -1,10 +1,10 @@
 from scoreDATA import score
-from MLE import find_mut_rate_only
+from MLE import find_mut_rate_one_param
 import pandas as pd
 
 df1 = pd.read_csv('data/mutantcount1', header=None)
 data = df1.to_numpy().flatten()
 
-res = find_mut_rate_only(data, score, dif=[1, 0.1, 0.01, 0.001], maximize=False, Nc=200000)
+res = find_mut_rate_one_param(data, score, dif=[1, 0.1, 0.01, 0.001], Nc=200000)
 print(res)
 
