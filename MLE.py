@@ -32,7 +32,7 @@ def MLE_step_m_two_param(data, m, dif, score_data):
     scores = [0, 1, 0]
     while scores[1] > min(scores):
         ms = [m - dif, m, m + dif]
-        scores = [score_data(data, ms[0]), score_data(data, ms[1]), score_data(data, ms[2])]
+        scores = [score_data(data, ms[0], d=0), score_data(data, ms[1], d=0), score_data(data, ms[2], d=0)]
         for i in range(len(scores)):
             if ms[i] < 0:
                 scores[i] = max(scores) + 1
@@ -49,9 +49,9 @@ def MLE_step_d(data, d, dif, m, score_data):
     scores = [0, 1, 0]
     while scores[1] > min(scores):
         ds = [d - dif, d, d + dif]
-        scores = [score_data(data, m, ds[0]),
-                  score_data(data, m, ds[1]),
-                  score_data(data, m, ds[2])]
+        scores = [score_data(data, m, d=ds[0]),
+                  score_data(data, m, d=ds[1]),
+                  score_data(data, m, d=ds[2])]
         for i in range(len(scores)):
             if ds[i] < 0:
                 scores[i] = max(scores) + 1
@@ -83,6 +83,7 @@ def find_mut_and_death_rate(data, score_data,
     dif_m is precisions of m - list
     dif_d is precisions of d - list
     '''
+    d = 0
     m = median(data)
     for i in dif_m:
         m = MLE_step_m_two_param(data, m, i, score_data)
